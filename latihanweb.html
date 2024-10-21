@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbandingan Senilai</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin: 20px;
+            background-color:#c7ecd2;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        h1 {
+            color: #6a8200;
+            text-shadow: 2px 2px 4px #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Latihan Perbandingan Senilai</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5>1. Jika 3 kg apel seharga Rp 12.000, berapa harga 5 kg apel?</h5>
+                <input type="number" id="jawaban1" placeholder="Masukkan jawaban" class="form-control">
+                <button onclick="cekJawaban(1, 20000)" class="btn btn-primary mt-2">Cek Jawaban</button>
+                <div id="feedback1" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>2. Jika 4 liter susu seharga Rp 40.000, berapa harga 7 liter susu?</h5>
+                <input type="number" id="jawaban2" placeholder="Masukkan jawaban" class="form-control">
+                <button onclick="cekJawaban(2, 70000)" class="btn btn-primary mt-2">Cek Jawaban</button>
+                <div id="feedback2" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>3. Jika 5 m kain seharga Rp 100.000, berapa harga 8 m kain?</h5>
+                <input type="number" id="jawaban3" placeholder="Masukkan jawaban" class="form-control">
+                <button onclick="cekJawaban(3, 160000)" class="btn btn-primary mt-2">Cek Jawaban</button>
+                <div id="feedback3" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cekJawaban(soal, jawabanBenar) {
+            var jawabanUser = document.getElementById("jawaban" + soal).value;
+            var feedback = document.getElementById("feedback" + soal);
+            
+            if (jawabanUser === "") {
+                feedback.innerHTML = "Silakan masukkan jawaban Anda.";
+                feedback.style.color = "red";
+            } else if (parseInt(jawabanUser) === jawabanBenar) {
+                feedback.innerHTML = "Jawaban Anda benar!";
+                feedback.style.color = "green";
+            } else {
+                feedback.innerHTML = "Jawaban Anda salah. Coba lagi!";
+                feedback.style.color = "red";
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

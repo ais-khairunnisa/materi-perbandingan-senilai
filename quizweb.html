@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Pilihan Ganda Perbandingan Senilai</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin: 20px;
+            background-color: #ccf2cf;
+        }
+        h1 {
+            color: #6a8200;
+            text-shadow: 2px 2px 4px #aaa;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #timer {
+            font-size: 24px;
+            color: red;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question h5 {
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">QUIZ</h1>
+        <div id="timer" class="text-center mb-4"></div>
+        
+        <form id="quizForm">
+            <div class="card">
+                <div class="card-body question">
+                    <h5>1. Jika 2 kg beras seharga Rp 30.000, berapa harga 5 kg beras?</h5>
+                    <label><input type="radio" name="q1" value="60000"> Rp 60.000</label>
+                    <label><input type="radio" name="q1" value="75000"> Rp 75.000</label>
+                    <label><input type="radio" name="q1" value="90000"> Rp 90.000</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body question">
+                    <h5>2. Jika 10 liter minyak seharga Rp 80.000, berapa harga 15 liter minyak?</h5>
+                    <label><input type="radio" name="q2" value="120000"> Rp 120.000</label>
+                    <label><input type="radio" name="q2" value="100000"> Rp 100.000</label>
+                    <label><input type="radio" name="q2" value="140000"> Rp 140.000</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body question">
+                    <h5>3. Jika 4 m kain seharga Rp 200.000, berapa harga 10 m kain?</h5>
+                    <label><input type="radio" name="q3" value="400000"> Rp 400.000</label>
+                    <label><input type="radio" name="q3" value="500000"> Rp 500.000</label>
+                    <label><input type="radio" name="q3" value="600000"> Rp 600.000</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body question">
+                    <h5>4. Jika 6 buku seharga Rp 90.000, berapa harga 10 buku?</h5>
+                    <label><input type="radio" name="q4" value="120000"> Rp 120.000</label>
+                    <label><input type="radio" name="q4" value="150000"> Rp 150.000</label>
+                    <label><input type="radio" name="q4" value="180000"> Rp 180.000</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body question">
+                    <h5>5. Jika 3 kg daging seharga Rp 120.000, berapa harga 8 kg daging?</h5>
+                    <label><input type="radio" name="q5" value="240000"> Rp 240.000</label>
+                    <label><input type="radio" name="q5" value="320000"> Rp 320.000</label>
+                    <label><input type="radio" name="q5" value="400000"> Rp 400.000</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success mt-4" onclick="cekJawaban()">Selesai Kuis</button>
+        </form>
+    </div>
+
+    <script>
+        let waktu = 300; // waktu dalam detik (5 menit)
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const menit = Math.floor(waktu / 60);
+            const detik = waktu % 60;
+            timerElement.innerHTML = `Waktu tersisa: ${menit} menit ${detik} detik`;
+            if (waktu > 0) {
+                waktu--;
+            } else {
+                clearInterval(timerInterval);
+                alert("Waktu habis! Kuis selesai.");
+                cekJawaban();
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        function cekJawaban() {
+            clearInterval(timerInterval);
+            const form = document.getElementById('quizForm');
+            const jawabanBenar = {
+                q1: '75000',
+                q2: '120000',
+                q3: '500000',
+                q4: '150000',
+                q5: '320000'
+            };
+            let skor = 0;
+
+            for (const [key, value] of Object.entries(jawabanBenar)) {
+                const jawabanUser = form.elements[key].value;
+                if (jawabanUser === value) {
+                    skor++;
+                }
+            }
+
+            alert(`Kuis selesai. Skor Anda: ${skor} dari 5`);
+        }
+    </script>
+</body>
+</html>
